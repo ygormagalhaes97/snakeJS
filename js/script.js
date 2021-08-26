@@ -2,6 +2,7 @@ let canvas = document.getElementById("snake");
 let context = canvas.getContext("2d");
 let box = 32;
 let cobra = [];
+let score = 0;
 cobra[0] = {
     x: 8 * box,
     y: 8 * box
@@ -51,7 +52,7 @@ function iniciarJogo(){
     for(i = 1; i < cobra.length; i++){
         if(cobra[0].x == cobra[i].x && cobra[0].y == cobra[i].y){
             clearInterval(jogo);
-            alert("Game Over");
+            alert("Game Over \nSeu score foi de: " + score);
         }
     }
     
@@ -73,6 +74,8 @@ function iniciarJogo(){
         cobra.pop();
     }
     else{
+        score ++;
+        document.getElementById("score").innerHTML = score;
         comida.x = Math.floor(Math.random() * 15 + 1) * box;
         comida.y = Math.floor(Math.random() * 15 + 1) * box;
     }
